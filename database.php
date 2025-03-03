@@ -46,7 +46,16 @@ class Database{
   		return false; // Table does not exist
   	}
   }
+	// Function to get the last inserted ID
+	public function lastInsertedId(){
+		return $this->mysqli->insert_id;
+	}
 
+	// Function to count rows returned
+	public function numRows($sql){
+		$query = $this->mysqli->query($sql);
+		return ($query) ? $query->num_rows : 0;
+	}
   // Function to update row in database
   public function update($table,$params=array(),$where = null){
     // Check to see if table exists
